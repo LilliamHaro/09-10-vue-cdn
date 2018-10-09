@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+</head>
+
+<body>
+  <div id="app" class="">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/s">VUE.JS</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>
+              <router-link to="/" params="color:red" class="classList nav-link">Home</router-link>
+            </li>
+            <li>
+              <router-link to="/acerca-de" class="nav-link">Sobre Nosotros</router-link>
+            </li>
+            <li>
+              <router-link to="/contact" class="nav-link">Contactos</router-link>
+            </li>
+            <li>
+              <router-link to="/mas" class="nav-link">Mas</router-link>
+            </li>
+            <li>
+              <router-link to="/quinto" class="nav-link">Quinto</router-link>
+            </li>
+            <li>
+              <router-link to="/sexto" class="nav-link">Sexto</router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+      <router-view></router-view>
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+
+  <script type="text/x-template" src="js/template-uno.js" id="template-uno">
+    <div id="app2" class="full-screen bg-1 ">
+      <h2 :style="titleStyles">Página Homeeeeeeeeeee {{message1}}</h2>
+      <div>Mensajes del componente hijo</div>
+      <p>{{messages}}</p>
+      <my-component></my-component>
+      </div>
+  </script>
+
+  <script type="text/x-template" id="template-form">
+        <div class="full-screen bg-5">
+          <section id="form" class="section">
+              <form>
+                <h1 class="title is-1">
+                  {{form.formName}}
+                </h1>
+            
+                <div class="field">
+                  <label class="label">Name</label>
+                  <div class="control">
+                    <input class="input" type="text" v-model="form.userName" />
+                  </div>
+                </div>
+            
+                <div class="field">
+                  <label class="label">Favorite Color</label>
+                  <div class="control">
+                    <div class="select">
+                      <select v-model="form.favoriteColor">
+                        <option v-for="color in ['Red', 'Blue', 'Green']" :value="color">
+                          {{color}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="field">
+                  <label class="label">Favorite Hamburger Place</label>
+                  <div class="control">
+                    <label>
+                      <input type="radio" value="whataburger" v-model="form.favoriteHamburger" />
+                      Whataburger
+                    </label>
+                    <br>
+                    <label>
+                      <input type="radio" value="pterrys" v-model="form.favoriteHamburger" />
+                      P.Terry's
+                    </label>
+                    <br>
+                    <label>
+                      <input type="radio" value="hopdoddy" v-model="form.favoriteHamburger" />
+                      Hopdoddy
+                    </label>
+                  </div>
+                </div>
+            
+                <div class="field">
+                  <label class="label">Favorite Hangout</label>
+                  <div class="control">
+                    <label>
+                      <input type="checkbox" value="barton-springs" v-model="form.favoriteHangout" />
+                      Barton Springs
+                    </label>
+                    <br>
+                    <label>
+                      <input type="checkbox" value="zilker-park" v-model="form.favoriteHangout" />
+                      Zilker Park
+                    </label>
+                    <br>
+                    <label>
+                      <input type="checkbox" value="sixth-stree" v-model="form.favoriteHangout" />
+                      Sixth Street
+                    </label>
+                  </div>
+                </div>
+            
+                <div class="field">
+                  <label class="label">How many hours a week do you work?</label>
+                  <div class="control">
+                    <h4 class="title is-4">
+                      {{form.workHours}} / 80
+                    </h4>
+                    <input type="range" min="0" max="80" v-model="form.workHours"/>
+                  </div>
+                </div>
+            
+                <input class="button is-primary margin-bottom" type="submit" @click.prevent="fakeSubmit" />
+            
+              </form>
+              
+            
+
+                <article class="message is-primary" v-show="showSubmitFeedback">
+                  <div class="message-header">
+                    <p>Fake Send Status:</p>
+                  </div>
+                  <div class="message-body">
+                    Successfully Submitted!
+                  </div>
+                </article>
+              
+              <hr>
+              
+              <h5>
+                JSON
+              </h5>
+              <pre><code>{{form}}</code></pre>
+            </section>
+      </div>
+  </script>
+
+  <script>
+    //páginas
+    var Child = {
+      template: '<div><input v-model="msg"/> <button v-on:click="notify()">Dispatch Event</button> </div>',
+      data: function () {
+        return {
+          msg: this.msg,
+        }
+      },
+      methods: {
+        notify: function (event) {
+          this.$dispatch('child-msg', this.msg)
+        }
+      }
+
+    }
+    var Home = {
+      template: '#template-uno',
+      data: function () {
+        var f = new Date();
+        var fechas = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+        return {
+          message1: fechas,
+          color: 'red',
+          messages: [],
+        }
+      },
+      computed: {
+        titleStyles() {
+          return `color: ${this.color}`
+        },
+      },
+      components: {
+        'my-component': Child,
+      },
+      events: {
+        'child-msg': function (msg) {
+          this.messages.push(msg);
+        }
+      }
+    }
+
+    var About = {
+      template: `<div class="full-screen bg-2">
+        <h2>Página Nosotros</h2>
+        <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p>     
+        <button v-on:click="greet">Greet</button>
+      </div>`,
+      data: function () {
+        return {
+          message: message
+        }
+      },
+      methods: {
+        greet: function (event) {
+          alert(this.message)
+          console.log(this.message);
+        }
+      }
+    }
+    var Prueba = {
+      template: `<div>componente hijo de prueba</div>`,
+    }
+    var Contact = {
+      template: `<div class="full-screen bg-3">
+        <h2 id="uno">Página de contactos</h2>
+        <h2>Página Home {{message3}}</h2>
+        <button v-on:click="greet2">Greet</button>
+      </div>`,
+      data: function () {
+        return {
+          message3: message3
+        }
+      },
+      methods: {
+        greet2: function (event) {
+          this.message3++;
+          console.log(this.message3);
+        }
+      }
+    }
+
+    var Mas = {
+      template: `<div class="full-screen bg-4">
+        <h2 id="uno">Página Mas</h2>
+        <h2>Página Home {{message4}}</h2>
+      </div>`,
+      data: function () {
+        return {
+          message4: message4
+        }
+      },
+      created: function () {
+        this.message4++;
+        console.log(this.message4);
+      }
+    }
+    var Quinto = {
+      template: `<div class="full-screen bg-5">
+        <h2 id="uno">Página Quinta</h2>
+        <h2>Página Home</h2>
+        <div>{{lists}}</div>
+      </div>`,
+      data: function () {
+        return {
+          lists: [],
+        }
+      },
+      created: function () {
+        this.lista();
+      },
+      methods: {
+        lista: function (event) {
+          this.$http.get(urlUsers).then(function (response) {
+            this.lists = response;
+          })
+        }
+      }
+    }
+
+
+    var Sexto = {
+      template: '#template-form',
+      data: function () {
+        return {
+          form: {
+            formName: 'Tell Us About Yourself',
+            userName: '',
+            favoriteColor: 'Red',
+            favoriteHamburger: '',
+            favoriteHangout: [],
+            workHours: 0
+          },
+          showSubmitFeedback: false
+        }
+      },
+      methods: {
+        fakeSubmit() {
+          this.showSubmitFeedback = true;
+          console.log(this.$data.form.formName)
+          setTimeout(() => {
+            this.showSubmitFeedback = false;
+          }, 3000);
+        }
+      }
+    }
+
+    //rutas
+    var routes = [
+
+      { path: '/', component: Home },
+      { path: '/acerca-de', component: About },
+      { path: '/contact', component: Contact },
+      { path: '/mas', component: Mas },
+      { path: '/quinto', component: Quinto },
+      { path: '/sexto', component: Sexto },
+      { path: '*', component: Home }
+    ]
+
+    var router = new VueRouter({
+      routes
+    })
+
+    //proyecto vue
+    var message1 = '';
+    var message = '';
+    var message3 = 1;
+    var message4 = 5;
+    var urlUsers = "https://www.circuit.com.pe/api/public/user/";
+    var urlUsersPost = "https://www.circuit.com.pe/api/public/user/create";
+    var transitionName = '';
+    var msg = '';
+    // lists = [];
+    new Vue({
+      router,
+      el: '#app',
+      created: function () {
+        this.getUsers();
+        this.postUSers();
+      },
+      data: {
+        lists: [],
+        transitionName: ''
+      },
+      methods: {
+        getUsers: function () {
+          this.$http.get(urlUsers).then(function (response) {
+            this.lists = response;
+            var arr = Array.from(response.body.result);
+
+            for (var i = 0; i <= arr.length - 1; i++) {
+              console.log(Object.values(arr[i]))
+            }
+          })
+        },
+
+        postUSers: function () {
+          this.$http.post(urlUsersPost, JSON.stringify({
+            firstname: "jueves",
+            lastname: "viernes",
+            email: "sabado@gcair.com.pe",
+            password: "1234554555",
+            created_at: "2918-10-04 02:02:00;"
+          })
+
+          )
+            .then((response) => {
+              console.log('yes', response['status']);
+              console.log('complete-obj', response)
+            });
+        }
+      },
+
+    })
+  </script>
+
+</body>
+
+</html>
